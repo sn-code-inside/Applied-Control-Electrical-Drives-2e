@@ -1,0 +1,3216 @@
+Plecs {
+  Name          "HIL-ADCsampCTRL-v4"
+  Version       "4.9"
+  CircuitModel  "ContStateSpace"
+  StartTime     "0.0"
+  TimeSpan      "2000*Ts"
+  Timeout       ""
+  Solver        "auto"
+  MaxStep       "1e-3"
+  InitStep      "-1"
+  FixedStep     "1e-6"
+  Refine        "5"
+  ZCStepSize    "1e-9"
+  RelTol        "1e-3"
+  AbsTol        "-1"
+  TurnOnThreshold "0"
+  NonIdealSwitchResistance "1"
+  SyncFixedStepTasks "2"
+  UseSingleCommonBaseRate "2"
+  LossVariableLimitExceededMsg "3"
+  NegativeSwitchLossMsg "3"
+  DivisionByZeroMsg "3"
+  DatatypeOverflowMsg "2"
+  DatatypeInheritanceConflictMsg "1"
+  ContSampleTimeConflictMsg "1"
+  StiffnessDetectionMsg "2"
+  MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "2"
+  AssertionAction "1"
+  FixedPointDatatypeOverride "1"
+  InitializationCommands "%Virtual GANIN board used with F280049 Launchpad\nAD"
+"C_fsV=81.499 % (V) fullscale ADC voltage\nADC_fsC=33.0 % (A)  fullscaleADC cu"
+"rrent\nf_LPF=463.0 %(Hz) converter LPF cnr freq\ntauLPvolt = 1/(2*pi*f_LPF); "
+"%hardware LPF timeconstant\nfcontroller=10e3 % controller sample freq (Hz)\nf"
+"s=fcontroller\nTs=1/fcontroller\nf_PWM=10e3 % PWM frequency\n%load\nRs=0.5% ("
+"Ohm)\nLs=200e-6% (H)"
+  InitialState  "1"
+  SystemState   ""
+  TaskingMode   "1"
+  TaskConfigurations ""
+  CodeGenParameterInlining "2"
+  CodeGenFloatingPointFormat "2"
+  CodeGenAbsTimeUsageMsg "3"
+  CodeGenBaseName ""
+  CodeGenOutputDir ""
+  CodeGenExtraOpts ""
+  CodeGenTarget "Generic"
+  CodeGenTargetSettings ""
+  ExtendedMatrixPrecision "1"
+  MatrixSignificanceCheck "2"
+  RemoveUnusedStateSpaceOutputs "1"
+  EnableStateSpaceSplitting "2"
+  DisplayStateSpaceSplitting "1"
+  DiscretizationMethod "2"
+  ExternalModeSettings ""
+  AlgebraicLoopMethod "1"
+  AlgebraicLoopTolerance "1e-6"
+  ScriptsDialogGeometry "[764 395 446 243]"
+  ScriptsDialogSplitterPos "100"
+  Schematic {
+    Location      [461, 439; 1253, 902]
+    ZoomFactor    1.33333
+    SliderPosition [0, 0]
+    ShowBrowser   off
+    BrowserWidth  100
+    Component {
+      Type          Subsystem
+      Name          "ADC test converter-RTbox"
+      Show          on
+      Position      [220, 110]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Frame         [-60, -55; 60, 55]
+      TreatAsAtomicUnit on
+      SampleTime    "-1"
+      TaskingMode "2"
+      TaskConfigurations "AAAACQAAAAADAAAACAAAAAAGAAAACABDAG8AcgBlAAAAAgAAAAAA"
+"AAAABgBDAHAAdQAAAAIAAAAAAAAAAA4ARABlAGYAYQB1AGwAdAAAAAEAAQAAAAgATgBhAG0AZQAAA"
+"AoAAAAAEgBCAGEAcwBlACAAVABhAHMAawAAABQAUwBhAG0AcABsAGUAVABpAG0AZQAAAAoAAAAAAg"
+"AwAAAADgBUAGgAZQByAG0AYQBsAAAAAQAAAAAACAAAAAAGAAAACABDAG8AcgBlAAAAAgAAAAAAAAA"
+"ABgBDAHAAdQAAAAIAAAAAAAAAAA4ARABlAGYAYQB1AGwAdAAAAAEAAAAAAAgATgBhAG0AZQAAAAoA"
+"AAAAFgAxADAAMABIAHoAbQBvAGQAdQBsAGUAAAAUAFMAYQBtAHAAbABlAFQAaQBtAGUAAAAKAAAAA"
+"AoAMQAvADEAMAAwAAAADgBUAGgAZQByAG0AYQBsAAAAAQAAAAAACAAAAAAGAAAACABDAG8AcgBlAA"
+"AAAgAAAAAAAAAABgBDAHAAdQAAAAIAAAAAAAAAAA4ARABlAGYAYQB1AGwAdAAAAAEAAAAAAAgATgB"
+"hAG0AZQAAAAoAAAAAIgBMAG8AdwAgAFAAcgBpAG8AcgBpAHQAeQAgAFQAYQBzAGsAAAAUAFMAYQBt"
+"AHAAbABlAFQAaQBtAGUAAAAKAAAAAAYAMAAuADUAAAAOAFQAaABlAHIAbQBhAGwAAAABAAA="
+      CodeGenEnable on
+      CodeGenSampleTime "Ts"
+      CodeGenDiscretizationMethod "1"
+      CodeGenInliningExceptions "AAAACwAAAAAEAAAACgBHAGEAaQBuADUAAAAcAE0AYQBuA"
+"HUAYQBsACAAUwB3AGkAdABjAGgANQAAAA4AQwBvAG4AdgBfADAAbgAAABIAbQBvAGQAXwBpAG4AZA"
+"BlAHg="
+      CodeGenTarget "TI28004x"
+      CodeGenTargetSettings "AAAAfwAAAAAbQ29kZUdlblRhcmdldDo6U2V0dGluZ3NNYXAAA"
+"AAAAwAAABAAUwBUAE0AMwAyAEYAMwB4AAAAFAAAAA4AQQBkAGMAVgBSAGUAZgAAAAYAMwAuADMAAA"
+"AeAEMAaABlAGMAawBGAG8AcgBVAHAAZABhAHQAZQBzAAAAAgAxAAAACABDAGgAaQBwAAAAAgAxAAA"
+"ADgBEAGUAYgB1AGcASQBmAAAAAgAxAAAAGgBFAFgAVABFAFIATgBBAEwAXwBNAE8ARABFAAAAAgAx"
+"AAAAEgBFAHgAdABDAGwAawBNAEgAegAAAAIAOAAAACIARQB4AHQATQBvAGQAZQBCAHUAZgBmAGUAc"
+"gBTAGkAegBlAAAACAAxADAAMAAwAAAAIABFAHgAdABNAG8AZABlAFUAYQByAHQAUgB4AFAAaQBuAA"
+"AAAgAzAAAAIgBFAHgAdABNAG8AZABlAFUAYQByAHQAUgB4AFAAbwByAHQAAAACADEAAAAgAEUAeAB"
+"0AE0AbwBkAGUAVQBhAHIAdABUAHgAUABpAG4AAAACADIAAAAiAEUAeAB0AE0AbwBkAGUAVQBhAHIA"
+"dABUAHgAUABvAHIAdAAAAAIAMQAAAA4ARwBlAG4ATwBuAGwAeQAAAAIAMAAAABQASQBuAHMAdABhA"
+"GwAbABEAGkAcgAAAAAAAAAMAFAAcgBvAGcASQBmAAAAAgAxAAAAIABTAGEAbQBwAGwAZQBUAGkAbQ"
+"BlAFIAZQBsAFQAbwBsAAAABAAxADAAAAASAFMAeQBzAEMAbABrAE0ASAB6AAAADABTAFkAUwBDAEw"
+"ASwAAABoAVABBAFIARwBFAFQAXwBEAEUAVgBJAEMARQAAAB4ANQB8ADEAMgA3AC4AMAAuADAALgAx"
+"AHwAMAB8ADAAAAAWAFQAYQBzAGsARgByAGUAcQBUAG8AbAAAAAIAMQAAAEoAVQBTAEUAXwBEAEEAV"
+"ABBAF8AVABZAFAARQBTAF8ARgBPAFIAXwBUAFUATgBBAEIATABFAF8AUABBAFIAQQBNAEUAVABFAF"
+"IAUwAAAAIAMQAAABIAVQBzAGUASQBuAHQATwBzAGMAAAACADEAAAAQAFMAVABNADMAMgBHADQAeAA"
+"AAFYAAAAOAEEAZABjAFYAUgBlAGYAAAAGADMALgAzAAAAGgBBAG4AYQBsAG8AZwBGAGwAdABTAGkA"
+"ZwAxAAAAAgAwAAAAGgBBAG4AYQBsAG8AZwBGAGwAdABTAGkAZwAyAAAAAgAwAAAAGgBBAG4AYQBsA"
+"G8AZwBGAGwAdABTAGkAZwAzAAAAAgAwAAAAGgBBAG4AYQBsAG8AZwBGAGwAdABTAGkAZwA0AAAAAg"
+"AwAAAAGgBBAG4AYQBsAG8AZwBGAGwAdABTAGkAZwA1AAAAAgAwAAAAGgBBAG4AYQBsAG8AZwBGAGw"
+"AdABTAGkAZwA2AAAAAgAwAAAAGgBBAG4AYQBsAG8AZwBGAGwAdABTAGkAZwA3AAAAAgAwAAAAHgBB"
+"AHUAdABvAHAAcgBvAGIAZQBEAGUAdgBpAGMAZQAAAAIAMAAAABIAQgB1AGkAbABkAFQAeQBwAGUAA"
+"AACADMAAAAIAEMAaABpAHAAAAACADIAAAAkAEMAaABpAHAAVgBhAHIAaQBhAG4AdABzAEcANAAzAD"
+"EAeAB4AAAAAgAxAAAAJABDAGgAaQBwAFYAYQByAGkAYQBuAHQAcwBHADQANwA0AHgAeAAAAAIAMQA"
+"AABAAQwBvAG0AcABPAHUAdAAxAAAAAgAxAAAAEABDAG8AbQBwAE8AdQB0ADIAAAACADEAAAAQAEMA"
+"bwBtAHAATwB1AHQAMwAAAAIAMQAAABAAQwBvAG0AcABPAHUAdAA0AAAAAgAxAAAAEABDAG8AbQBwA"
+"E8AdQB0ADUAAAACADEAAAAQAEMAbwBtAHAATwB1AHQANgAAAAIAMQAAABAAQwBvAG0AcABPAHUAdA"
+"A3AAAAAgAxAAAAFgBDAG8AbQBwAE8AdQB0AFAAaQBuADEAAAACADAAAAAWAEMAbwBtAHAATwB1AHQ"
+"AUABpAG4AMgAAAAIAMAAAABYAQwBvAG0AcABPAHUAdABQAGkAbgAzAAAAAgAwAAAAFgBDAG8AbQBw"
+"AE8AdQB0AFAAaQBuADQAAAACADAAAAAWAEMAbwBtAHAATwB1AHQAUABpAG4ANQAAAAIAMAAAABYAQ"
+"wBvAG0AcABPAHUAdABQAGkAbgA2AAAAAgAwAAAAFgBDAG8AbQBwAE8AdQB0AFAAaQBuADcAAAACAD"
+"AAAAAYAEMAbwBtAHAATwB1AHQAUABvAHIAdAAxAAAAAgAxAAAAGABDAG8AbQBwAE8AdQB0AFAAbwB"
+"yAHQAMgAAAAIAMQAAABgAQwBvAG0AcABPAHUAdABQAG8AcgB0ADMAAAACADEAAAAYAEMAbwBtAHAA"
+"TwB1AHQAUABvAHIAdAA0AAAAAgAxAAAAGABDAG8AbQBwAE8AdQB0AFAAbwByAHQANQAAAAIAMQAAA"
+"BgAQwBvAG0AcABPAHUAdABQAG8AcgB0ADYAAAACADEAAAAYAEMAbwBtAHAATwB1AHQAUABvAHIAdA"
+"A3AAAAAgAxAAAADgBEAGUAYgB1AGcASQBmAAAAAgAxAAAAGgBFAFgAVABFAFIATgBBAEwAXwBNAE8"
+"ARABFAAAAAgAxAAAAEgBFAHgAdABDAGwAawBNAEgAegAAAAIAOAAAACIARQB4AHQATQBvAGQAZQBC"
+"AHUAZgBmAGUAcgBTAGkAegBlAAAACgAxADAAMAAwADAAAAAgAEUAeAB0AE0AbwBkAGUAVQBhAHIAd"
+"ABSAHgAUABpAG4AAAACADMAAAAiAEUAeAB0AE0AbwBkAGUAVQBhAHIAdABSAHgAUABvAHIAdAAAAA"
+"IAMQAAACAARQB4AHQATQBvAGQAZQBVAGEAcgB0AFQAeABQAGkAbgAAAAIAMgAAACIARQB4AHQATQB"
+"vAGQAZQBVAGEAcgB0AFQAeABQAG8AcgB0AAAAAgAxAAAAHABHAGUAbgBlAHIAYQB0AGUAUABpAG4A"
+"TQBhAHAAAAACADEAAAAUAEkAbgBzAHQAYQBsAGwARABpAHIAAAAAAAAAHABOAGUAZQBkAHMAQQB1A"
+"HQAbwBwAHIAbwBiAGUAAAACADAAAAASAFAAbwBsAGEAcgBpAHQAeQAxAAAAAgAyAAAAEgBQAG8AbA"
+"BhAHIAaQB0AHkAMgAAAAIAMgAAABIAUABvAGwAYQByAGkAdAB5ADMAAAACADIAAAASAFAAbwBsAGE"
+"AcgBpAHQAeQA0AAAAAgAyAAAAEgBQAG8AbABhAHIAaQB0AHkANQAAAAIAMgAAABIAUABvAGwAYQBy"
+"AGkAdAB5ADYAAAACADIAAAASAFAAbwBsAGEAcgBpAHQAeQA3AAAAAgAyAAAADABQAHIAbwBnAEkAZ"
+"gAAAAIAMQAAACAAUwBhAG0AcABsAGUAVABpAG0AZQBSAGUAbABUAG8AbAAAAAQAMQAwAAAAEgBTAG"
+"UAbgBzAGUAUABpAG4AMQAAAAIAMAAAABIAUwBlAG4AcwBlAFAAaQBuADIAAAACADAAAAASAFMAZQB"
+"uAHMAZQBQAGkAbgAzAAAAAgAwAAAAEgBTAGUAbgBzAGUAUABpAG4ANAAAAAIAMAAAABIAUwBlAG4A"
+"cwBlAFAAaQBuADUAAAACADAAAAASAFMAZQBuAHMAZQBQAGkAbgA2AAAAAgAwAAAAEgBTAGUAbgBzA"
+"GUAUABpAG4ANwAAAAIAMAAAABQAUwBlAG4AcwBlAFAAbwByAHQAMQAAAAIAMQAAABQAUwBlAG4Acw"
+"BlAFAAbwByAHQAMgAAAAIAMQAAABQAUwBlAG4AcwBlAFAAbwByAHQAMwAAAAIAMQAAABQAUwBlAG4"
+"AcwBlAFAAbwByAHQANAAAAAIAMQAAABQAUwBlAG4AcwBlAFAAbwByAHQANQAAAAIAMQAAABQAUwBl"
+"AG4AcwBlAFAAbwByAHQANgAAAAIAMQAAABQAUwBlAG4AcwBlAFAAbwByAHQANwAAAAIAMQAAABgAU"
+"wBlAHIAaQBhAGwATgB1AG0AYgBlAHIAAAAAAAAAJABTAGUAcgBpAGEAbABOAHUAbQBiAGUAcgBTAH"
+"QAcgBpAG4AZwAAAAAAAAAmAFMAcABlAGMAaQBmAHkAUwBlAHIAaQBhAGwATgB1AG0AYgBlAHIAAAA"
+"CADAAAAASAFMAeQBzAEMAbABrAE0ASAB6AAAABgAxADcAMAAAABoAVABBAFIARwBFAFQAXwBEAEUA"
+"VgBJAEMARQAAAB4ANQB8ADEAMgA3AC4AMAAuADAALgAxAHwAMAB8ADAAAAAUAFQAYQByAGcAZQB0A"
+"E4AYQBtAGUAAAAQAFMAVABNADMAMgBHADQAeAAAABYAVABhAHMAawBGAHIAZQBxAFQAbwBsAAAAAg"
+"AxAAAAGgBUAGEAcwBrAFMAYwBoAGUAZAB1AGwAZQByAAAAAgAyAAAAFABUAGgAcgBlAHMAaABvAGw"
+"AZAAxAAAABgAwAC4AMAAAABQAVABoAHIAZQBzAGgAbwBsAGQAMgAAAAYAMAAuADAAAAAUAFQAaABy"
+"AGUAcwBoAG8AbABkADMAAAAGADAALgAwAAAAFABUAGgAcgBlAHMAaABvAGwAZAA0AAAABgAwAC4AM"
+"AAAABQAVABoAHIAZQBzAGgAbwBsAGQANQAAAAYAMAAuADAAAAAUAFQAaAByAGUAcwBoAG8AbABkAD"
+"YAAAAGADAALgAwAAAAFABUAGgAcgBlAHMAaABvAGwAZAA3AAAABgAwAC4AMAAAAEoAVQBTAEUAXwB"
+"EAEEAVABBAF8AVABZAFAARQBTAF8ARgBPAFIAXwBUAFUATgBBAEIATABFAF8AUABBAFIAQQBNAEUA"
+"VABFAFIAUwAAAAIAMQAAADQAVQBTAEUAXwBTAFQAQQBSAFQAXwBUAEkATQBFAF8ASQBOAF8ASQBOA"
+"EkAVABfAEYAQwBOAAAAAgAwAAAAEgBVAHMAZQBJAG4AdABPAHMAYwAAAAIAMQAAABAAVABJADIAOA"
+"AwADAANAB4AAAAaQAAACIAQQBuAFQAcgBpAHAAMQBBAGQAYwBDAGgAYQBuAG4AZQBsAAAAAgAwAAA"
+"AHABBAG4AVAByAGkAcAAxAEEAZABjAFUAbgBpAHQAAAACADEAAAAaAEEAbgBUAHIAaQBwADEARQBu"
+"AGEAYgBsAGUAAAACADAAAAAgAEEAbgBUAHIAaQBwADEASQBuAHAAdQB0AFQAeQBwAGUAAAACADEAA"
+"AAcAEEAbgBUAHIAaQBwADEAUABnAGEAVQBuAGkAdAAAAAIAMAAAABoAQQBuAFQAcgBpAHAAMQBTAG"
+"kAZwBuAGEAbAAAAAIAMQAAACgAQQBuAFQAcgBpAHAAMQBUAGgAcgBlAHMAaABvAGwAZABIAGkAZwB"
+"oAAAAAgAwAAAAJgBBAG4AVAByAGkAcAAxAFQAaAByAGUAcwBoAG8AbABkAEwAbwB3AAAAAgAwAAAA"
+"IgBBAG4AVAByAGkAcAAyAEEAZABjAEMAaABhAG4AbgBlAGwAAAACADAAAAAcAEEAbgBUAHIAaQBwA"
+"DIAQQBkAGMAVQBuAGkAdAAAAAIAMQAAABoAQQBuAFQAcgBpAHAAMgBFAG4AYQBiAGwAZQAAAAIAMA"
+"AAACAAQQBuAFQAcgBpAHAAMgBJAG4AcAB1AHQAVAB5AHAAZQAAAAIAMQAAABwAQQBuAFQAcgBpAHA"
+"AMgBQAGcAYQBVAG4AaQB0AAAAAgAwAAAAGgBBAG4AVAByAGkAcAAyAFMAaQBnAG4AYQBsAAAAAgAx"
+"AAAAKABBAG4AVAByAGkAcAAyAFQAaAByAGUAcwBoAG8AbABkAEgAaQBnAGgAAAACADAAAAAmAEEAb"
+"gBUAHIAaQBwADIAVABoAHIAZQBzAGgAbwBsAGQATABvAHcAAAACADAAAAAiAEEAbgBUAHIAaQBwAD"
+"MAQQBkAGMAQwBoAGEAbgBuAGUAbAAAAAIAMAAAABwAQQBuAFQAcgBpAHAAMwBBAGQAYwBVAG4AaQB"
+"0AAAAAgAxAAAAGgBBAG4AVAByAGkAcAAzAEUAbgBhAGIAbABlAAAAAgAwAAAAIABBAG4AVAByAGkA"
+"cAAzAEkAbgBwAHUAdABUAHkAcABlAAAAAgAxAAAAHABBAG4AVAByAGkAcAAzAFAAZwBhAFUAbgBpA"
+"HQAAAACADAAAAAaAEEAbgBUAHIAaQBwADMAUwBpAGcAbgBhAGwAAAACADEAAAAoAEEAbgBUAHIAaQ"
+"BwADMAVABoAHIAZQBzAGgAbwBsAGQASABpAGcAaAAAAAIAMAAAACYAQQBuAFQAcgBpAHAAMwBUAGg"
+"AcgBlAHMAaABvAGwAZABMAG8AdwAAAAIAMAAAACIAQQBuAFQAcgBpAHAANABBAGQAYwBDAGgAYQBu"
+"AG4AZQBsAAAAAgAwAAAAHABBAG4AVAByAGkAcAA0AEEAZABjAFUAbgBpAHQAAAACADEAAAAaAEEAb"
+"gBUAHIAaQBwADQARQBuAGEAYgBsAGUAAAACADAAAAAgAEEAbgBUAHIAaQBwADQASQBuAHAAdQB0AF"
+"QAeQBwAGUAAAACADEAAAAcAEEAbgBUAHIAaQBwADQAUABnAGEAVQBuAGkAdAAAAAIAMAAAABoAQQB"
+"uAFQAcgBpAHAANABTAGkAZwBuAGEAbAAAAAIAMQAAACgAQQBuAFQAcgBpAHAANABUAGgAcgBlAHMA"
+"aABvAGwAZABIAGkAZwBoAAAAAgAwAAAAJgBBAG4AVAByAGkAcAA0AFQAaAByAGUAcwBoAG8AbABkA"
+"EwAbwB3AAAAAgAwAAAAGgBFAFgAVABFAFIATgBBAEwAXwBNAE8ARABFAAAAAgAxAAAAIgBMAGkAbg"
+"BrAGUAcgBDAG8AbQBtAGEAbgBkAEYAaQBsAGUAAAAAAAAAEgBQAHcAbQAxAEEARwBwAGkAbwAAAAI"
+"AMAAAABIAUAB3AG0AMQBCAEcAcABpAG8AAAACADEAAAAUAFAAdwBtADEARwBwAGkAbwBFAG4AAAAC"
+"ADAAAAASAFAAdwBtADIAQQBHAHAAaQBvAAAAAgAyAAAAEgBQAHcAbQAyAEIARwBwAGkAbwAAAAIAM"
+"wAAABQAUAB3AG0AMgBHAHAAaQBvAEUAbgAAAAIAMAAAABIAUAB3AG0AMwBBAEcAcABpAG8AAAACAD"
+"QAAAASAFAAdwBtADMAQgBHAHAAaQBvAAAAAgA1AAAAFABQAHcAbQAzAEcAcABpAG8ARQBuAAAAAgA"
+"wAAAAEgBQAHcAbQA0AEEARwBwAGkAbwAAAAIANgAAABIAUAB3AG0ANABCAEcAcABpAG8AAAACADcA"
+"AAAUAFAAdwBtADQARwBwAGkAbwBFAG4AAAACADAAAAASAFAAdwBtADUAQQBHAHAAaQBvAAAAAgA4A"
+"AAAEgBQAHcAbQA1AEIARwBwAGkAbwAAAAIAOQAAABQAUAB3AG0ANQBHAHAAaQBvAEUAbgAAAAIAMA"
+"AAABIAUAB3AG0ANgBBAEcAcABpAG8AAAAEADEAMAAAABIAUAB3AG0ANgBCAEcAcABpAG8AAAAEADE"
+"AMQAAABQAUAB3AG0ANgBHAHAAaQBvAEUAbgAAAAIAMAAAABIAUAB3AG0ANwBBAEcAcABpAG8AAAAE"
+"ADEAMgAAABIAUAB3AG0ANwBCAEcAcABpAG8AAAAEADEAMwAAABQAUAB3AG0ANwBHAHAAaQBvAEUAb"
+"gAAAAIAMAAAABIAUAB3AG0AOABBAEcAcABpAG8AAAAEADEANAAAABIAUAB3AG0AOABCAEcAcABpAG"
+"8AAAAEADEANQAAABQAUAB3AG0AOABHAHAAaQBvAEUAbgAAAAIAMAAAACAAUwBhAG0AcABsAGUAVAB"
+"pAG0AZQBSAGUAbABUAG8AbAAAAAQAMQAwAAAAGABTAGUAcgBpAGEAbABOAHUAbQBiAGUAcgAAAAAA"
+"AAAqAFMAZQByAGkAYQBsAE4AdQBtAGIAZQByAFMAcABlAGMAaQBmAGkAZQBkAAAAAgAwAAAAGgBUA"
+"EEAUgBHAEUAVABfAEQARQBWAEkAQwBFAAAAFAAwAHwAQwBPAE0AMwB8ADAAfAAwAAAAEgBUAHoAMQ"
+"BFAG4AYQBiAGwAZQAAAAIAMAAAAA4AVAB6ADEARwBwAGkAbwAAAAIAMAAAABIAVAB6ADIARQBuAGE"
+"AYgBsAGUAAAACADAAAAAOAFQAegAyAEcAcABpAG8AAAACADAAAAASAFQAegAzAEUAbgBhAGIAbABl"
+"AAAAAgAwAAAADgBUAHoAMwBHAHAAaQBvAAAAAgAwAAAASgBVAFMARQBfAEQAQQBUAEEAXwBUAFkAU"
+"ABFAFMAXwBGAE8AUgBfAFQAVQBOAEEAQgBMAEUAXwBQAEEAUgBBAE0ARQBUAEUAUgBTAAAAAgAxAA"
+"AANABVAFMARQBfAFMAVABBAFIAVABfAFQASQBNAEUAXwBJAE4AXwBJAE4ASQBUAF8ARgBDAE4AAAA"
+"CADAAAAAOAFYAcgBlAGYAQQBkAGMAAAAGADMALgAzAAAAGABWAHIAZQBmAEMAbwBtAGIAbwBCAG8A"
+"eAAAAAIAMQAAAAoAYgBvAGEAcgBkAAAAAgAyAAAAFgBiAHUAaQBsAGQAQwBvAG4AZgBpAGcAAAACA"
+"DIAAAAIAGMAaABpAHAAAAACADEAAAASAGUAeAB0AEMAbABrAE0ASAB6AAAABAAyADAAAAAiAGUAeA"
+"B0AE0AbwBkAGUAQgB1AGYAZgBlAHIAUwBpAHoAZQAAAAgAMQAwADAAMAAAABwAZQB4AHQATQBvAGQ"
+"AZQBTAGMAaQBQAGkAbgBzAAAADgBbADIAOAAsADIAOQBdAAAADgBnAGUAbgBPAG4AbAB5AAAAAgAy"
+"AAAAFABpAG4AcwB0AGEAbABsAEQAaQByAAAAAAAAAAwAcABnAGEAMQBFAG4AAAACADAAAAAQAHAAZ"
+"wBhADEARwBhAGkAbgAAAAIAMQAAAAwAcABnAGEAMQBSAGYAAAACADEAAAAMAHAAZwBhADIARQBuAA"
+"AAAgAwAAAAEABwAGcAYQAyAEcAYQBpAG4AAAACADEAAAAMAHAAZwBhADIAUgBmAAAAAgAxAAAADAB"
+"wAGcAYQAzAEUAbgAAAAIAMAAAABAAcABnAGEAMwBHAGEAaQBuAAAAAgAxAAAADABwAGcAYQAzAFIA"
+"ZgAAAAIAMQAAAAwAcABnAGEANABFAG4AAAACADAAAAAQAHAAZwBhADQARwBhAGkAbgAAAAIAMQAAA"
+"AwAcABnAGEANABSAGYAAAACADEAAAAMAHAAZwBhADUARQBuAAAAAgAwAAAAEABwAGcAYQA1AEcAYQ"
+"BpAG4AAAACADEAAAAMAHAAZwBhADUAUgBmAAAAAgAxAAAADABwAGcAYQA2AEUAbgAAAAIAMAAAABA"
+"AcABnAGEANgBHAGEAaQBuAAAAAgAxAAAADABwAGcAYQA2AFIAZgAAAAIAMQAAAAwAcABnAGEANwBF"
+"AG4AAAACADAAAAAQAHAAZwBhADcARwBhAGkAbgAAAAIAMQAAAAwAcABnAGEANwBSAGYAAAACADEAA"
+"AASAHMAeQBzAEMAbABrAE0ASAB6AAAABgAxADAAMAAAABYAdABhAHMAawBGAHIAZQBxAFQAbwBsAA"
+"AAAgAxAAAAGAB1AG4AaQBmAGwAYQBzAGgARgBpAGwAZQAAAAAAAAASAHUAcwBlAEkAbgB0AE8AcwB"
+"jAAAAAgAx"
+      CodeGenFloatingPointFormat "1"
+      ExternalModeSettings "AAAAfwAAAAAYQ29kZUdlblRhcmdldDo6U2V0dGluZ3MAAAAABw"
+"AAABQARABlAGMAaQBtAGEAdABpAG8AbgAAAAIAMQAAABQATgB1AG0AUwBhAG0AcABsAGUAcwAAAAo"
+"AMQAwADAAMAAwAAAAFgBSAGUAZgByAGUAcwBoAFIAYQB0AGUAAAAEADIAMAAAABYAUwBlAG4AcwBp"
+"AHQAaQB2AGkAdAB5AAAAAgAxAAAAHABUAHIAaQBnAGcAZQByAEMAaABhAG4AbgBlAGwAAAAEAC0AM"
+"QAAABgAVAByAGkAZwBnAGUAcgBEAGUAbABhAHkAAAAIAC0ANAAwADAAAAAYAFQAcgBpAGcAZwBlAH"
+"IAVgBhAGwAdQBlAAAAAgAw"
+      MaskIconFrame on
+      MaskIconOpaque off
+      MaskIconRotates on
+      Terminal {
+        Type          Output
+        Position      [64, -25]
+        Direction     right
+        Index         "3"
+      }
+      Terminal {
+        Type          Input
+        Position      [-60, 15]
+        Direction     left
+        Index         "2"
+      }
+      Terminal {
+        Type          Input
+        Position      [-60, -30]
+        Direction     left
+        Index         "1"
+      }
+      Terminal {
+        Type          Output
+        Position      [64, 0]
+        Direction     right
+        Index         "2"
+      }
+      Terminal {
+        Type          Output
+        Position      [64, 25]
+        Direction     right
+        Index         "1"
+      }
+      Schematic {
+        Location      [-68, 486; 1095, 1190]
+        ZoomFactor    0.948247
+        SliderPosition [0, 0]
+        ShowBrowser   off
+        BrowserWidth  100
+        Component {
+          Type          TaskFrame
+          Name          "Group3"
+          Show          off
+          Position      [135, 320]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-102, -67; 102, 67]
+          Parameter {
+            Variable      "Task"
+            Value         "Low Priority Task"
+            Show          off
+          }
+        }
+        Component {
+          Type          Display
+          Name          "CPU load"
+          Show          on
+          Position      [160, 280]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-16, -11; 16, 11]
+          Parameter {
+            Variable      "Notation"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Precision"
+            Value         "0"
+            Show          off
+          }
+        }
+        Component {
+          Type          Subsystem
+          Name          "Blink"
+          Show          on
+          Position      [85, 345]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-10, -10; 10, 10]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskDisplayLang "2"
+          MaskIconFrame on
+          MaskIconOpaque off
+          MaskIconRotates on
+          Terminal {
+            Type          Output
+            Position      [14, 0]
+            Direction     right
+          }
+          Schematic {
+            Location      [640, 274; 981, 551]
+            ZoomFactor    1
+            SliderPosition [0, 0]
+            ShowBrowser   off
+            BrowserWidth  100
+            Component {
+              Type          Delay
+              Name          "Delay1"
+              Show          off
+              Position      [80, 75]
+              Direction     left
+              Flipped       off
+              LabelPosition north
+              Parameter {
+                Variable      "N"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "X0"
+                Value         "0"
+                Show          off
+              }
+              Parameter {
+                Variable      "Ts"
+                Value         "-1"
+                Show          on
+              }
+            }
+            Component {
+              Type          LogicalOperator
+              Name          "Logical\nOperator1"
+              Show          off
+              Position      [80, 100]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Operator"
+                Value         "6"
+                Show          off
+              }
+              Parameter {
+                Variable      "Inputs"
+                Value         "1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Output
+              Name          "1"
+              Show          off
+              Position      [165, 75]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "1"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Delay1"
+              SrcTerminal   2
+              Points        [45, 75; 45, 100]
+              DstComponent  "Logical\nOperator1"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Logical\nOperator1"
+              SrcTerminal   1
+              Points        [115, 100; 115, 75]
+              Branch {
+                DstComponent  "Delay1"
+                DstTerminal   1
+              }
+              Branch {
+                DstComponent  "1"
+                DstTerminal   1
+              }
+            }
+          }
+        }
+        Component {
+          Type          From
+          Name          "From10"
+          Show          off
+          Position      [950, 75]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "C_ref"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Scope
+          Name          "Scope-currents"
+          Show          on
+          Position      [895, 370]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Location      [545, 398; 1435, 1031]
+          State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAb"
+"wBvAG0AQQByAGUAYQAAAAAA/////wAAADYA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAA"
+"AA/////wAAAGgA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABoAP///wAAAAMAAAN6AAA"
+"AYvwBAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA3oAAABSAP///wAAA3oAAAH4"
+"AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AA"
+"AAAAAAAAA=="
+          SavedViews    "AAAAAgAAAAA="
+          HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":151,\"Labels\""
+":[],\"VisualIdxs\":[]}"
+          PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          Axes          "1"
+          TimeRange     "0.0"
+          ScrollingMode "1"
+          SingleTimeAxis "1"
+          Open          "1"
+          Ts            "-1"
+          SampleLimit   "0"
+          XAxisLabel    "Time / s"
+          ShowLegend    "2"
+          Axis {
+            Name          ""
+            AutoScale     1
+            MinValue      0
+            MaxValue      1
+            Signals       {}
+            SignalTypes   [ ]
+            Untangle      0
+            KeepBaseline  off
+            BaselineValue 0
+          }
+          Fourier {
+            SingleXAxis       on
+            AxisLabel         "Frequency / Hz"
+            Scaling           0
+            PhaseDisplay      0
+            ShowFourierLegend off
+            Axis {
+              Name          ""
+              AutoScale     1
+              MinValue      0
+              MaxValue      1
+              Signals       {}
+              Untangle      0
+              KeepBaseline  off
+              BaselineValue 0
+            }
+          }
+        }
+        Component {
+          Type          Sum
+          Name          "Subtract"
+          Show          off
+          Position      [445, 255]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "IconShape"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "+-"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Gain
+          Name          "Gain5"
+          Show          off
+          Position      [600, 260]
+          Direction     left
+          Flipped       on
+          LabelPosition north
+          Parameter {
+            Variable      "K"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Multiplication"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputDataType"
+            Value         "10"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "GainDataType"
+            Value         "11"
+            Show          off
+          }
+        }
+        Component {
+          Type          Sum
+          Name          "Subtract1"
+          Show          off
+          Position      [785, 260]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "IconShape"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "++|"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          SignalMux
+          Name          "Mux3"
+          Show          off
+          Position      [835, 370]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Width"
+            Value         "2"
+            Show          off
+          }
+        }
+        Component {
+          Type          ManualSignalSwitch
+          Name          "Manual Switch5"
+          Show          off
+          Position      [895, 265]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "SwitchState"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          From
+          Name          "From1"
+          Show          off
+          Position      [270, 70]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "shuntA_"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto1"
+          Show          off
+          Position      [185, 95]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "shuntA_"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto5"
+          Show          off
+          Position      [565, 80]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Imeas"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          TaskFrame
+          Name          "Task Frame"
+          Show          off
+          Position      [270, 495]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-82, -57; 82, 57]
+          Parameter {
+            Variable      "Task"
+            Value         "100Hzmodule"
+            Show          off
+          }
+        }
+        Component {
+          Type          ManualSignalSwitch
+          Name          "Conv_0n"
+          Show          on
+          Position      [110, 500]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "SwitchState"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Constant
+          Name          "Constant"
+          Show          off
+          Position      [55, 495]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Frame         [-10, -10; 10, 10]
+          Parameter {
+            Variable      "Value"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "10"
+            Show          off
+          }
+        }
+        Component {
+          Type          Constant
+          Name          "ADC fullscale Voltage"
+          Show          on
+          Position      [585, 45]
+          Direction     right
+          Flipped       off
+          LabelPosition west
+          Frame         [-35, -10; 35, 10]
+          Parameter {
+            Variable      "Value"
+            Value         "ADC_fsV"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "10"
+            Show          off
+          }
+        }
+        Component {
+          Type          Product
+          Name          "Product4"
+          Show          off
+          Position      [700, 50]
+          Direction     up
+          Flipped       on
+          LabelPosition north
+          Parameter {
+            Variable      "IconShape"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Display
+          Name          "DC bus(V)"
+          Show          on
+          Position      [1085, 50]
+          Direction     up
+          Flipped       on
+          LabelPosition east
+          Frame         [-31, -11; 31, 11]
+          Parameter {
+            Variable      "Notation"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Precision"
+            Value         "4"
+            Show          off
+          }
+        }
+        Component {
+          Type          Gain
+          Name          "ADCscal3"
+          Show          off
+          Position      [755, 50]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "K"
+            Value         "1/3.3"
+            Show          off
+          }
+          Parameter {
+            Variable      "Multiplication"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputDataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "GainDataType"
+            Value         "11"
+            Show          off
+          }
+        }
+        Component {
+          Type          Subsystem
+          Name          "m*->d"
+          Show          on
+          Position      [980, 265]
+          Direction     up
+          Flipped       off
+          LabelPosition north
+          Frame         [-20, -10; 20, 10]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskIconFrame on
+          MaskIconOpaque off
+          MaskIconRotates on
+          Terminal {
+            Type          Output
+            Position      [24, 0]
+            Direction     right
+          }
+          Terminal {
+            Type          Input
+            Position      [-20, 0]
+            Direction     left
+          }
+          Schematic {
+            Location      [960, 453; 1301, 730]
+            ZoomFactor    1
+            SliderPosition [0, 0]
+            ShowBrowser   off
+            BrowserWidth  100
+            Component {
+              Type          Offset
+              Name          "Offset"
+              Show          off
+              Position      [155, 60]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Frame         [-20, -10; 20, 10]
+              Parameter {
+                Variable      "Offset"
+                Value         "0.5"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Output
+              Name          "o"
+              Show          on
+              Position      [280, 60]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "1"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Input
+              Name          "i"
+              Show          on
+              Position      [45, 60]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "2"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "w2n2"
+              Show          off
+              Position      [100, 60]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "1/2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Saturation
+              Name          "Saturation"
+              Show          on
+              Position      [220, 60]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "UpperLimit"
+                Value         "1.0"
+                Show          off
+              }
+              Parameter {
+                Variable      "LowerLimit"
+                Value         "0.0"
+                Show          off
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "w2n2"
+              SrcTerminal   2
+              DstComponent  "Offset"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "i"
+              SrcTerminal   1
+              DstComponent  "w2n2"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Offset"
+              SrcTerminal   2
+              DstComponent  "Saturation"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Saturation"
+              SrcTerminal   2
+              DstComponent  "o"
+              DstTerminal   1
+            }
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto13"
+          Show          off
+          Position      [820, 85]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "u_DC"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          SignalMux
+          Name          "Mux1"
+          Show          off
+          Position      [320, 95]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Width"
+            Value         "2"
+            Show          off
+          }
+        }
+        Component {
+          Type          Product
+          Name          "Product1"
+          Show          off
+          Position      [390, 100]
+          Direction     up
+          Flipped       on
+          LabelPosition north
+          Parameter {
+            Variable      "IconShape"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Constant
+          Name          "ADC fullscale Current"
+          Show          on
+          Position      [305, 150]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Frame         [-35, -10; 35, 10]
+          Parameter {
+            Variable      "Value"
+            Value         "ADC_fsC"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "10"
+            Show          off
+          }
+        }
+        Component {
+          Type          Gain
+          Name          "ADCscal1"
+          Show          off
+          Position      [435, 100]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "K"
+            Value         "1/3.3"
+            Show          off
+          }
+          Parameter {
+            Variable      "Multiplication"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputDataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "GainDataType"
+            Value         "11"
+            Show          off
+          }
+        }
+        Component {
+          Type          Sum
+          Name          "Sum3"
+          Show          off
+          Position      [480, 100]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "IconShape"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "|+-"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Gain
+          Name          "ADCscal6"
+          Show          off
+          Position      [435, 150]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "K"
+            Value         "1/2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Multiplication"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputDataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "GainDataType"
+            Value         "11"
+            Show          off
+          }
+        }
+        Component {
+          Type          SignalDemux
+          Name          "Demux4"
+          Show          off
+          Position      [515, 100]
+          Direction     right
+          Flipped       on
+          LabelPosition south
+          Parameter {
+            Variable      "Width"
+            Value         "2"
+            Show          off
+          }
+        }
+        Component {
+          Type          DiscreteIntegrator
+          Name          "Discrete\nIntegrator"
+          Show          on
+          Position      [720, 260]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "ExternalReset"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "InitialConditionSource"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "x0"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "ShowStatePort"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "EnableWrapping"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "UpperLimit"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "LowerLimit"
+            Value         "-1"
+            Show          off
+          }
+          Parameter {
+            Variable      "IntegrationMethod"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "SampleTime"
+            Value         "Ts"
+            Show          off
+          }
+        }
+        Component {
+          Type          Gain
+          Name          "Gain6"
+          Show          off
+          Position      [655, 260]
+          Direction     left
+          Flipped       on
+          LabelPosition north
+          Parameter {
+            Variable      "K"
+            Value         "2500"
+            Show          off
+          }
+          Parameter {
+            Variable      "Multiplication"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputDataType"
+            Value         "10"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "GainDataType"
+            Value         "11"
+            Show          off
+          }
+        }
+        Component {
+          Type          Saturation
+          Name          "Saturation"
+          Show          off
+          Position      [835, 260]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "UpperLimit"
+            Value         "0.98"
+            Show          off
+          }
+          Parameter {
+            Variable      "LowerLimit"
+            Value         "-0.98"
+            Show          off
+          }
+        }
+        Component {
+          Type          ZeroOrderHold
+          Name          "Zero-Order\nHold"
+          Show          off
+          Position      [410, 340]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Ts"
+            Value         "Ts"
+            Show          off
+          }
+        }
+        Component {
+          Type          Product
+          Name          "Product2"
+          Show          off
+          Position      [545, 260]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "IconShape"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Gain
+          Name          "ADCscal2"
+          Show          off
+          Position      [500, 305]
+          Direction     right
+          Flipped       on
+          LabelPosition south
+          Parameter {
+            Variable      "K"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Multiplication"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutputDataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "GainDataType"
+            Value         "11"
+            Show          off
+          }
+        }
+        Component {
+          Type          Product
+          Name          "Divide"
+          Show          off
+          Position      [565, 305]
+          Direction     down
+          Flipped       on
+          LabelPosition south
+          Parameter {
+            Variable      "IconShape"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Inputs"
+            Value         "*/"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "11"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataTypeOverflowMode"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Constant
+          Name          "Constant1"
+          Show          off
+          Position      [625, 285]
+          Direction     right
+          Flipped       on
+          LabelPosition south
+          Frame         [-10, -10; 10, 10]
+          Parameter {
+            Variable      "Value"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "10"
+            Show          off
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/PWM"
+          Name          "PWM"
+          Show          on
+          Position      [1060, 265]
+          Direction     up
+          Flipped       off
+          LabelPosition north
+          Frame         [-30, -50; 30, 50]
+          Parameter {
+            Variable      "PwmUnit"
+            Value         "[6 ]"
+            Show          off
+          }
+          Parameter {
+            Variable      "CarrierType"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "CarrierFreq"
+            Value         "f_PWM"
+            Show          off
+          }
+          Parameter {
+            Variable      "CarrierFreqTol"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Phase"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "OutMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "VariableDeadTime"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "FixedDeadTime"
+            Value         "100e-9"
+            Show          off
+          }
+          Parameter {
+            Variable      "MinDeadTime"
+            Value         "1e-6"
+            Show          off
+          }
+          Parameter {
+            Variable      "Polarity"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Sequence"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "SequenceAq"
+            Value         "[0]"
+            Show          off
+          }
+          Parameter {
+            Variable      "ShowEnable"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "CmpShadowMode"
+            Value         "3"
+            Show          off
+          }
+          Parameter {
+            Variable      "RedShadowMode"
+            Value         "3"
+            Show          off
+          }
+          Parameter {
+            Variable      "FedShadowMode"
+            Value         "3"
+            Show          off
+          }
+          Parameter {
+            Variable      "AllowProtection"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "SyncSrc"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "SyncOut"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "PeripheralSyncMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "AdcTriggerMode"
+            Value         "3"
+            Show          off
+          }
+          Parameter {
+            Variable      "AdcTriggerDivider"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TaskTriggerMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TaskTriggerDivider"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "OfflinePwmTclkOrigin"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "OfflinePwmTclk"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "tz1mode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "tz2mode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "tz3mode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TargetPortIndices"
+            Value         "1"
+            Show          off
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, 0]
+            Direction     left
+          }
+          Terminal {
+            Type          EventOutput
+            Position      [34, 20]
+            Direction     right
+          }
+          Terminal {
+            Type          EventOutput
+            Position      [34, -20]
+            Direction     right
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, -20]
+            Direction     left
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, -30]
+            Direction     left
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, 30]
+            Direction     left
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, -10]
+            Direction     left
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, 5]
+            Direction     left
+          }
+          Terminal {
+            Type          EventInput
+            Position      [0, -50]
+            Direction     up
+          }
+          Terminal {
+            Type          EventOutput
+            Position      [34, 0]
+            Direction     right
+          }
+          Terminal {
+            Type          Input
+            Position      [-30, -20]
+            Direction     left
+          }
+          Terminal {
+            Type          EventOutput
+            Position      [34, -35]
+            Direction     right
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/ADC"
+          Name          "ADC-B"
+          Show          on
+          Position      [80, 150]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-25, -25; 25, 25]
+          Parameter {
+            Variable      "TrigSrc"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "AdcUnit"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "Input"
+            Value         "[0 1 ]"
+            Show          off
+          }
+          Parameter {
+            Variable      "Scale"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Offset"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "AcqTimeSel"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "AcqTime"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "BitRes"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "VoltageRef"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "TargetPortIndices"
+            Value         "2"
+            Show          off
+          }
+          Terminal {
+            Type          Output
+            Position      [29, 0]
+            Direction     right
+          }
+          Terminal {
+            Type          EventOutput
+            Position      [29, 15]
+            Direction     right
+          }
+          Terminal {
+            Type          EventInput
+            Position      [0, -25]
+            Direction     up
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/ADC"
+          Name          "ADC-A"
+          Show          on
+          Position      [80, 60]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-25, -25; 25, 25]
+          Parameter {
+            Variable      "TrigSrc"
+            Value         "2"
+            Show          off
+          }
+          Parameter {
+            Variable      "AdcUnit"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Input"
+            Value         "[9 ]"
+            Show          off
+          }
+          Parameter {
+            Variable      "Scale"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Offset"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "AcqTimeSel"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "AcqTime"
+            Value         "0"
+            Show          off
+          }
+          Parameter {
+            Variable      "BitRes"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "VoltageRef"
+            Value         ""
+            Show          off
+          }
+          Parameter {
+            Variable      "TargetPortIndices"
+            Value         "3"
+            Show          off
+          }
+          Terminal {
+            Type          Output
+            Position      [29, 0]
+            Direction     right
+          }
+          Terminal {
+            Type          EventOutput
+            Position      [29, 15]
+            Direction     right
+          }
+          Terminal {
+            Type          EventInput
+            Position      [0, -25]
+            Direction     up
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/Powerstage Protection"
+          Name          "Powerstage Protection"
+          Show          on
+          Position      [265, 500]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-45, -25; 45, 25]
+          Parameter {
+            Variable      "EnableSignal"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "EnableSignalPolarity"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "EnableSignalGpio"
+            Value         "56"
+            Show          off
+          }
+          Parameter {
+            Variable      "PwmSafeState"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TripZone1Mode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TripZone2Mode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TripZone3Mode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TripSigAMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TripSigBMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TripSigCMode"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "SimInterlock"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TargetPortIndices"
+            Value         "4"
+            Show          off
+          }
+          Terminal {
+            Type          Input
+            Position      [-45, 0]
+            Direction     left
+          }
+          Terminal {
+            Type          Output
+            Position      [49, 0]
+            Direction     right
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/Load"
+          Name          "Load1"
+          Show          on
+          Position      [75, 280]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-25, -20; 25, 20]
+          Parameter {
+            Variable      "TargetPortIndices"
+            Value         ""
+            Show          off
+          }
+          Terminal {
+            Type          Output
+            Position      [29, 0]
+            Direction     right
+          }
+          Terminal {
+            Type          Output
+            Position      [29, 10]
+            Direction     right
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/Digital Out"
+          Name          "LED Blinking1"
+          Show          on
+          Position      [160, 345]
+          Direction     up
+          Flipped       off
+          LabelPosition south
+          Frame         [-25, -20; 25, 20]
+          Parameter {
+            Variable      "Gpio"
+            Value         "34"
+            Show          on
+          }
+          Parameter {
+            Variable      "OutputType"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "TargetPortIndices"
+            Value         "5"
+            Show          off
+          }
+          Terminal {
+            Type          Input
+            Position      [-25, 0]
+            Direction     left
+          }
+        }
+        Component {
+          Type          SignalDemux
+          Name          "Demux5"
+          Show          off
+          Position      [145, 125]
+          Direction     right
+          Flipped       on
+          LabelPosition south
+          Parameter {
+            Variable      "Width"
+            Value         "2"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto9"
+          Show          off
+          Position      [185, 140]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Iref_"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto14"
+          Show          off
+          Position      [185, 60]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "uDC_"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          From
+          Name          "From4"
+          Show          off
+          Position      [615, 65]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "uDC_"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          From
+          Name          "From12"
+          Show          off
+          Position      [680, 320]
+          Direction     right
+          Flipped       on
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "u_DC"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Display
+          Name          "Cntrl ref(A)"
+          Show          on
+          Position      [1085, 75]
+          Direction     up
+          Flipped       on
+          LabelPosition east
+          Frame         [-31, -11; 31, 11]
+          Parameter {
+            Variable      "Notation"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Precision"
+            Value         "4"
+            Show          off
+          }
+        }
+        Component {
+          Type          Display
+          Name          "Ctrl Av (A)"
+          Show          on
+          Position      [1085, 100]
+          Direction     up
+          Flipped       on
+          LabelPosition east
+          Frame         [-31, -11; 31, 11]
+          Parameter {
+            Variable      "Notation"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "Precision"
+            Value         "4"
+            Show          off
+          }
+        }
+        Component {
+          Type          From
+          Name          "From13"
+          Show          off
+          Position      [1000, 100]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Ctrl_Av"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          From
+          Name          "From7"
+          Show          off
+          Position      [270, 115]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Iref_"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          From
+          Name          "From8"
+          Show          off
+          Position      [360, 340]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Imeas"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto4"
+          Show          off
+          Position      [565, 100]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "C_ref"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto11"
+          Show          off
+          Position      [760, 395]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Ctrl_Av"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          Saturation
+          Name          "Saturation1"
+          Show          off
+          Position      [625, 320]
+          Direction     right
+          Flipped       on
+          LabelPosition south
+          Parameter {
+            Variable      "UpperLimit"
+            Value         "100"
+            Show          off
+          }
+          Parameter {
+            Variable      "LowerLimit"
+            Value         "0.1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Reference
+          SrcComponent  "TIC2000_Lib/Control Task\\nTrigger"
+          Name          "Control Task\nTrigger1"
+          Show          on
+          Position      [160, 180]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+        }
+        Component {
+          Type          Subsystem
+          Name          "LP/HP5"
+          Show          off
+          Position      [1000, 75]
+          Direction     up
+          Flipped       off
+          LabelPosition north
+          Frame         [-15, -10; 15, 10]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskIconFrame on
+          MaskIconOpaque off
+          MaskIconRotates on
+          Parameter {
+            Variable      "f_o"
+            Prompt        "freq(Hz)"
+            Type          FreeText
+            Value         "1"
+            Show          off
+            Tunable       off
+            TabName       ""
+          }
+          Terminal {
+            Type          Input
+            Position      [-15, 0]
+            Direction     left
+          }
+          Terminal {
+            Type          Output
+            Position      [19, 0]
+            Direction     right
+          }
+          Schematic {
+            Location      [484, 352; 1139, 685]
+            ZoomFactor    1
+            SliderPosition [0, 0]
+            ShowBrowser   off
+            BrowserWidth  100
+            Component {
+              Type          Sum
+              Name          "Sum2"
+              Show          off
+              Position      [100, 105]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "IconShape"
+                Value         "2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Inputs"
+                Value         "|+-"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "ADCscal10"
+              Show          off
+              Position      [155, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "2*pi*f_o"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Integrator
+              Name          "Integrator1"
+              Show          off
+              Position      [210, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "ExternalReset"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "InitialConditionSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "x0"
+                Value         "0"
+                Show          off
+              }
+              Parameter {
+                Variable      "ShowStatePort"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "EnableWrapping"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "UpperLimit"
+                Value         "inf"
+                Show          off
+              }
+              Parameter {
+                Variable      "LowerLimit"
+                Value         "-inf"
+                Show          off
+              }
+            }
+            Component {
+              Type          Input
+              Name          "In"
+              Show          on
+              Position      [35, 45]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "1"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Output
+              Name          "LP"
+              Show          on
+              Position      [345, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "2"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "In"
+              SrcTerminal   1
+              Points        [75, 45]
+              DstComponent  "Sum2"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Integrator1"
+              SrcTerminal   2
+              Points        [265, 105]
+              Branch {
+                DstComponent  "LP"
+                DstTerminal   1
+              }
+              Branch {
+                Points        [265, 215; 100, 215]
+                DstComponent  "Sum2"
+                DstTerminal   3
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Sum2"
+              SrcTerminal   1
+              DstComponent  "ADCscal10"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "ADCscal10"
+              SrcTerminal   2
+              DstComponent  "Integrator1"
+              DstTerminal   1
+            }
+          }
+        }
+        Component {
+          Type          Subsystem
+          Name          "LP/HP6"
+          Show          off
+          Position      [655, 375]
+          Direction     up
+          Flipped       off
+          LabelPosition north
+          Frame         [-15, -10; 15, 10]
+          SampleTime    "-1"
+          CodeGenDiscretizationMethod "2"
+          CodeGenTarget "Generic"
+          MaskIconFrame on
+          MaskIconOpaque off
+          MaskIconRotates on
+          Parameter {
+            Variable      "f_o"
+            Prompt        "freq(Hz)"
+            Type          FreeText
+            Value         "1"
+            Show          off
+            Tunable       off
+            TabName       ""
+          }
+          Terminal {
+            Type          Input
+            Position      [-15, 0]
+            Direction     left
+          }
+          Terminal {
+            Type          Output
+            Position      [19, 0]
+            Direction     right
+          }
+          Schematic {
+            Location      [484, 352; 1139, 685]
+            ZoomFactor    1
+            SliderPosition [0, 0]
+            ShowBrowser   off
+            BrowserWidth  100
+            Component {
+              Type          Sum
+              Name          "Sum2"
+              Show          off
+              Position      [100, 105]
+              Direction     up
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "IconShape"
+                Value         "2"
+                Show          off
+              }
+              Parameter {
+                Variable      "Inputs"
+                Value         "|+-"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Gain
+              Name          "ADCscal10"
+              Show          off
+              Position      [155, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "K"
+                Value         "2*pi*f_o"
+                Show          off
+              }
+              Parameter {
+                Variable      "Multiplication"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "OutputDataType"
+                Value         "11"
+                Show          off
+              }
+              Parameter {
+                Variable      "DataTypeOverflowMode"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "GainDataType"
+                Value         "11"
+                Show          off
+              }
+            }
+            Component {
+              Type          Integrator
+              Name          "Integrator1"
+              Show          off
+              Position      [210, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "ExternalReset"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "InitialConditionSource"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "x0"
+                Value         "0"
+                Show          off
+              }
+              Parameter {
+                Variable      "ShowStatePort"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "EnableWrapping"
+                Value         "1"
+                Show          off
+              }
+              Parameter {
+                Variable      "UpperLimit"
+                Value         "inf"
+                Show          off
+              }
+              Parameter {
+                Variable      "LowerLimit"
+                Value         "-inf"
+                Show          off
+              }
+            }
+            Component {
+              Type          Input
+              Name          "In"
+              Show          on
+              Position      [35, 45]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "1"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Component {
+              Type          Output
+              Name          "LP"
+              Show          on
+              Position      [345, 105]
+              Direction     right
+              Flipped       off
+              LabelPosition south
+              Parameter {
+                Variable      "Index"
+                Value         "2"
+                Show          on
+              }
+              Parameter {
+                Variable      "Width"
+                Value         "-1"
+                Show          off
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "In"
+              SrcTerminal   1
+              Points        [75, 45]
+              DstComponent  "Sum2"
+              DstTerminal   2
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Integrator1"
+              SrcTerminal   2
+              Points        [265, 105]
+              Branch {
+                DstComponent  "LP"
+                DstTerminal   1
+              }
+              Branch {
+                Points        [265, 215; 100, 215]
+                DstComponent  "Sum2"
+                DstTerminal   3
+              }
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "Sum2"
+              SrcTerminal   1
+              DstComponent  "ADCscal10"
+              DstTerminal   1
+            }
+            Connection {
+              Type          Signal
+              SrcComponent  "ADCscal10"
+              SrcTerminal   2
+              DstComponent  "Integrator1"
+              DstTerminal   1
+            }
+          }
+        }
+        Component {
+          Type          From
+          Name          "From9"
+          Show          off
+          Position      [360, 225]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Isetpoint"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "1"
+            Show          off
+          }
+        }
+        Component {
+          Type          Goto
+          Name          "Goto16"
+          Show          off
+          Position      [1060, 130]
+          Direction     right
+          Flipped       off
+          LabelPosition south
+          Parameter {
+            Variable      "Tag"
+            Value         "Isetpoint"
+            Show          off
+          }
+          Parameter {
+            Variable      "Visibility"
+            Value         "1"
+            Show          off
+          }
+          Parameter {
+            Variable      "NoMatchingCounterpartAction"
+            Value         "3"
+            Show          off
+          }
+        }
+        Component {
+          Type          Constant
+          Name          "mod_index"
+          Show          on
+          Position      [810, 320]
+          Direction     right
+          Flipped       off
+          LabelPosition west
+          Frame         [-15, -10; 15, 10]
+          Parameter {
+            Variable      "Value"
+            Value         "0.2"
+            Show          off
+          }
+          Parameter {
+            Variable      "DataType"
+            Value         "10"
+            Show          off
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Mux3"
+          SrcTerminal   1
+          DstComponent  "Scope-currents"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Constant"
+          SrcTerminal   1
+          DstComponent  "Conv_0n"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Product4"
+          SrcTerminal   1
+          DstComponent  "ADCscal3"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "m*->d"
+          SrcTerminal   1
+          DstComponent  "PWM"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Mux1"
+          SrcTerminal   1
+          DstComponent  "Product1"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Product1"
+          SrcTerminal   1
+          DstComponent  "ADCscal1"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADCscal1"
+          SrcTerminal   2
+          DstComponent  "Sum3"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADC fullscale Current"
+          SrcTerminal   1
+          Points        [355, 150]
+          Branch {
+            Points        [355, 105]
+            DstComponent  "Product1"
+            DstTerminal   2
+          }
+          Branch {
+            DstComponent  "ADCscal6"
+            DstTerminal   1
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADCscal6"
+          SrcTerminal   2
+          Points        [480, 150]
+          DstComponent  "Sum3"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Gain5"
+          SrcTerminal   2
+          Points        [620, 260]
+          Branch {
+            DstComponent  "Gain6"
+            DstTerminal   1
+          }
+          Branch {
+            Points        [620, 235]
+            DstComponent  "Subtract1"
+            DstTerminal   2
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Subtract1"
+          SrcTerminal   1
+          DstComponent  "Saturation"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Saturation"
+          SrcTerminal   2
+          DstComponent  "Manual Switch5"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Product2"
+          SrcTerminal   1
+          DstComponent  "Gain5"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Divide"
+          SrcTerminal   1
+          DstComponent  "ADCscal2"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Constant1"
+          SrcTerminal   1
+          Points        [605, 285; 605, 300]
+          DstComponent  "Divide"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Gain6"
+          SrcTerminal   2
+          DstComponent  "Discrete\nIntegrator"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Discrete\nIntegrator"
+          SrcTerminal   2
+          DstComponent  "Subtract1"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Event
+          SrcComponent  "PWM"
+          SrcTerminal   3
+          Points        [1195, 245; 1195, 5; 80, 5]
+          Branch {
+            DstComponent  "ADC-A"
+            DstTerminal   3
+          }
+          Branch {
+            Points        [30, 5; 30, 105; 80, 105]
+            DstComponent  "ADC-B"
+            DstTerminal   3
+          }
+        }
+        Connection {
+          Type          Event
+          SrcComponent  "ADC-B"
+          SrcTerminal   2
+          Points        [120, 165; 120, 180]
+          DstComponent  "Control Task\nTrigger1"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Conv_0n"
+          SrcTerminal   1
+          DstComponent  "Powerstage Protection"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Load1"
+          SrcTerminal   1
+          DstComponent  "CPU load"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Blink"
+          SrcTerminal   1
+          DstComponent  "LED Blinking1"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADC-B"
+          SrcTerminal   1
+          Points        [120, 150; 120, 125]
+          DstComponent  "Demux5"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From4"
+          SrcTerminal   1
+          Points        [655, 65; 655, 55]
+          DstComponent  "Product4"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADCscal3"
+          SrcTerminal   2
+          Points        [800, 50]
+          Branch {
+            DstComponent  "Goto13"
+            DstTerminal   1
+          }
+          Branch {
+            DstComponent  "DC bus(V)"
+            DstTerminal   1
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Sum3"
+          SrcTerminal   1
+          DstComponent  "Demux4"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Subtract"
+          SrcTerminal   1
+          DstComponent  "Product2"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADCscal2"
+          SrcTerminal   2
+          Points        [465, 305; 465, 265]
+          DstComponent  "Product2"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From1"
+          SrcTerminal   1
+          Points        [290, 70; 290, 90]
+          DstComponent  "Mux1"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From7"
+          SrcTerminal   1
+          Points        [295, 115; 295, 100]
+          DstComponent  "Mux1"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux4"
+          SrcTerminal   2
+          Points        [535, 95; 535, 80]
+          DstComponent  "Goto5"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From8"
+          SrcTerminal   1
+          DstComponent  "Zero-Order\nHold"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Zero-Order\nHold"
+          SrcTerminal   2
+          Points        [445, 340]
+          Branch {
+            Points        [535, 340]
+            Branch {
+              Points        [535, 375]
+              DstComponent  "LP/HP6"
+              DstTerminal   1
+            }
+            Branch {
+              Points        [820, 340]
+              DstComponent  "Mux3"
+              DstTerminal   2
+            }
+          }
+          Branch {
+            DstComponent  "Subtract"
+            DstTerminal   3
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux4"
+          SrcTerminal   3
+          Points        [535, 105; 535, 100]
+          DstComponent  "Goto4"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Saturation1"
+          SrcTerminal   2
+          Points        [600, 320; 600, 310]
+          DstComponent  "Divide"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From12"
+          SrcTerminal   1
+          DstComponent  "Saturation1"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From10"
+          SrcTerminal   1
+          DstComponent  "LP/HP5"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADC-A"
+          SrcTerminal   1
+          DstComponent  "Goto14"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From9"
+          SrcTerminal   1
+          Points        [445, 225]
+          DstComponent  "Subtract"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "LP/HP5"
+          SrcTerminal   2
+          Points        [1030, 75]
+          Branch {
+            DstComponent  "Cntrl ref(A)"
+            DstTerminal   1
+          }
+          Branch {
+            Points        [1030, 130]
+            DstComponent  "Goto16"
+            DstTerminal   1
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "From13"
+          SrcTerminal   1
+          DstComponent  "Ctrl Av (A)"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "LP/HP6"
+          SrcTerminal   2
+          Points        [725, 375]
+          Branch {
+            Points        [725, 395]
+            DstComponent  "Goto11"
+            DstTerminal   1
+          }
+          Branch {
+            DstComponent  "Mux3"
+            DstTerminal   3
+          }
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Manual Switch5"
+          SrcTerminal   1
+          DstComponent  "m*->d"
+          DstTerminal   2
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "ADC fullscale Voltage"
+          SrcTerminal   1
+          DstComponent  "Product4"
+          DstTerminal   3
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux5"
+          SrcTerminal   2
+          Points        [160, 120; 160, 95]
+          DstComponent  "Goto1"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "Demux5"
+          SrcTerminal   3
+          Points        [160, 130; 160, 140]
+          DstComponent  "Goto9"
+          DstTerminal   1
+        }
+        Connection {
+          Type          Signal
+          SrcComponent  "mod_index"
+          SrcTerminal   1
+          Points        [845, 320; 845, 290; 865, 290]
+          DstComponent  "Manual Switch5"
+          DstTerminal   3
+        }
+        RectangleAnnotation {
+          Position     [95, 495]
+          Width        130
+          Height       60
+          CornerRadius 3
+          Thickness    2
+          PenColor     10642217
+          PenAlpha     0
+          BrushColor   1090453504
+          BrushAlpha   0.25098
+        } 
+        Annotation {
+          Name          "<html><body>\n<p>Used with RTbox and F280049 Launchpa"
+"d</p></body></html>"
+          Position      [885, 25]
+        } 
+      }
+    }
+  }
+  Analysis {
+    Type          SteadyStateAnalysis
+    Name          "Steady-State Analysis"
+    OperatingPoint "1"
+    TimeSpan      "1"
+    StartTime     "0"
+    Tolerance     "1e-4"
+    MaxIter       "20"
+    JacobianPerturbation "1e-4"
+    JacobianCalculation "2"
+    InitCycles    "0"
+    ShowCycles    "1"
+    MaxNumberOfThreads "-1"
+  }
+}
